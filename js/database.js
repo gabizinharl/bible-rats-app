@@ -1,7 +1,6 @@
 const STORAGE_KEYS = {
   session: 'christian_gym_session',
-  progress: 'christian_gym_progress',
-  demo: 'christian_gym_demo'
+  progress: 'christian_gym_progress'
 };
 
 const BOOK_COLORS = [
@@ -144,40 +143,21 @@ function getSupabaseClient() {
   return window.supabase.createClient(config.url, config.key);
 }
 
-function ensureDemoSession() {
-  const existing = getStoredItem(STORAGE_KEYS.session);
-
-  if (!existing || !existing.user) {
-    const demoSession = {
-      user: {
-        id: 'demo-user',
-        email: 'demo@christiangym.app',
-        full_name: 'Usuário Demo',
-        username: 'demo_user'
-      }
-    };
-
-    localStorage.setItem('christian_gym_demo', 'true');
-    setStoredItem(STORAGE_KEYS.session, demoSession);
-    setStoredItem(STORAGE_KEYS.progress, seedProgress);
-  }
-}
-
 function getSession() {
-  ensureDemoSession();
-  return getStoredItem(STORAGE_KEYS.session);
+  const session = getStoredItem(STORAGE_KEYS.session);
+
+  if (session?.user?.email === 'demo@christiangym.app') {
+    localStorage.removeItem(STORAGE_KEYS.session);
+    localStorage.removeItem(STORAGE_KEYS.progress);
+    localStorage.removeItem('christian_gym_demo');
+    return null;
+  }
+
+  return session;
 }
 
 function getProgress() {
-  const session = getSession();
-  const storedProgress = getStoredItem(STORAGE_KEYS.progress);
-  const isDemoMode = localStorage.getItem('christian_gym_demo') === 'true' || session.user?.email === 'demo@christiangym.app';
-
-  if (isDemoMode) {
-    return storedProgress || seedProgress;
-  }
-
-  return storedProgress || [];
+  return getStoredItem(STORAGE_KEYS.progress) || [];
 }
 
 function saveProgress(entries) {

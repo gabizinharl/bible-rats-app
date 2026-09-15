@@ -1,3 +1,18 @@
+const ensureAuthenticatedApp = () => {
+  const session = window.database?.getSession?.();
+
+  if (!session || !session.user) {
+    window.location.href = './login.html';
+    return false;
+  }
+
+  return true;
+};
+
+if (!ensureAuthenticatedApp()) {
+  throw new Error('Usuário não autenticado.');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const streakCount = document.getElementById('streak-count');
   const progressCount = document.getElementById('progress-count');

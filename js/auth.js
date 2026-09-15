@@ -16,21 +16,6 @@ const formMessage = (elementId, message, type = '') => {
   }
 };
 
-const createDemoSession = () => {
-  const demoSession = {
-    user: {
-      id: 'demo-user',
-      email: 'demo@christiangym.app',
-      full_name: 'Usuário Demo',
-      username: 'demo_user'
-    }
-  };
-
-  localStorage.setItem('christian_gym_demo', 'true');
-  localStorage.setItem('christian_gym_session', JSON.stringify(demoSession));
-  return demoSession;
-};
-
 const persistSupabaseConfig = () => {
   const url = prompt('Informe a URL do Supabase:', localStorage.getItem(SUPABASE_URL_KEY) || '');
   const key = prompt('Informe a anon key do Supabase:', localStorage.getItem(SUPABASE_KEY_KEY) || '');
@@ -67,15 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const loginForm = document.getElementById('login-form');
   const signupForm = document.getElementById('signup-form');
-  const demoLoginButton = document.getElementById('demo-login-button');
-
-  if (demoLoginButton) {
-    demoLoginButton.addEventListener('click', () => {
-      createDemoSession();
-      formMessage('login-message', 'Entrando no modo demo...', 'success');
-      setTimeout(() => window.location.href = './app.html', 300);
-    });
-  }
 
   if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
