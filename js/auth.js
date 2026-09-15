@@ -17,20 +17,22 @@ const formMessage = (elementId, message, type = '') => {
 };
 
 const persistSupabaseConfig = () => {
-  const url = prompt('Informe a URL do Supabase:', localStorage.getItem(SUPABASE_URL_KEY) || '');
-  const key = prompt('Informe a anon key do Supabase:', localStorage.getItem(SUPABASE_KEY_KEY) || '');
-
-  if (url && key) {
-    localStorage.setItem(SUPABASE_URL_KEY, url);
-    localStorage.setItem(SUPABASE_KEY_KEY, key);
-    formMessage('login-message', 'Configuração do Supabase salva localmente.', 'success');
-    formMessage('signup-message', 'Configuração do Supabase salva localmente.', 'success');
-  }
+  formMessage(
+    'login-message',
+    'Configuração do Supabase não foi definida no app. Ajuste a configuração no código antes de continuar.',
+    'error'
+  );
+  formMessage(
+    'signup-message',
+    'Configuração do Supabase não foi definida no app. Ajuste a configuração no código antes de continuar.',
+    'error'
+  );
 };
 
 const getSupabaseClient = () => {
-  const url = localStorage.getItem(SUPABASE_URL_KEY);
-  const key = localStorage.getItem(SUPABASE_KEY_KEY);
+  const runtimeConfig = window.BIBLE_RATS_SUPABASE || {};
+  const url = runtimeConfig.url || runtimeConfig.projectUrl || localStorage.getItem(SUPABASE_URL_KEY);
+  const key = runtimeConfig.key || runtimeConfig.anonKey || localStorage.getItem(SUPABASE_KEY_KEY);
 
   if (!url || !key || !window.supabase) {
     return null;

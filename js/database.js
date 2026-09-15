@@ -80,35 +80,6 @@ defaultBookData.forEach((book, index) => {
   book.color = BOOK_COLORS[index % BOOK_COLORS.length];
 });
 
-const seedProgress = buildSeedProgress();
-
-function buildSeedProgress() {
-  const progress = [];
-  const seen = new Set();
-
-  for (let i = 0; i < 20; i += 1) {
-    const randomBook = defaultBookData[Math.floor(Math.random() * defaultBookData.length)];
-    const chapter = Math.floor(Math.random() * randomBook.chapters) + 1;
-    const key = `${randomBook.name}:${chapter}`;
-
-    if (seen.has(key)) {
-      i -= 1;
-      continue;
-    }
-
-    seen.add(key);
-
-    progress.push({
-      id: `seed-${Date.now()}-${i}`,
-      book: randomBook.name,
-      chapter,
-      completed_at: new Date(Date.now() - Math.random() * 18 * 86400000).toISOString()
-    });
-  }
-
-  return progress.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-}
-
 function getStoredItem(key) {
   try {
     const item = localStorage.getItem(key);
@@ -124,8 +95,9 @@ function setStoredItem(key, value) {
 }
 
 function getSupabaseConfig() {
-  const url = localStorage.getItem('supabase_url');
-  const key = localStorage.getItem('supabase_anon_key');
+  const runtimeConfig = window.__SUPABASE_CONFIG__ || window.BIBLE_RATS_SUPABASE || {};
+  const url = runtimeConfig.url || runtimeConfig.projectUrl || localStorage.getItem('supabase_url');
+  const key = runtimeConfig.key || runtimeConfig.anonKey || localStorage.getItem('supabase_anon_key');
 
   return {
     url,
@@ -227,12 +199,8 @@ function buildAppData() {
 
   const totalChaptersRead = uniqueChapterKeys.size;
   const totalVerseReads = progress.filter((entry) => entry.verse != null).length;
-  const streak = 12;
-  const achievements = [
-    { id: 'a1', achievement_name: 'Primeiro Passo', description: 'Completou sua primeira leitura.' },
-    { id: 'a2', achievement_name: 'Sequência 7', description: 'Leu por 7 dias consecutivos.' },
-    { id: 'a3', achievement_name: 'Discípulo', description: 'Registrou 20 capítulos.' }
-  ];
+  const streak = 0;
+  const achievements = [];
 
   return {
     session,
