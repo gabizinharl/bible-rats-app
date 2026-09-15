@@ -1,4 +1,4 @@
 window.BIBLE_RATS_SUPABASE = {
-  url: 'https://SEU-PROJETO.supabase.co',
-  key: 'SUA_ANON_PUBLIC_KEY'
+  url: 'https://axidxnarcacfsaggwzxf.supabase.co',
+  key: 'sb_publishable_WglrYtiAxKhGoGeg36ey5A_EqibMpsD'
 };
