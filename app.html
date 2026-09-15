@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>App | Bible Rats</title>
+    <link rel="stylesheet" href="./css/styles.css?v=20260914" />
+  </head>
+  <body class="app-page">
+    <header class="topbar">
+      <div class="container nav">
+        <a href="./index.html" class="brand">
+          <img src="./assets/logo.svg" alt="Bible Rats" />
+          <span>Bible Rats</span>
+        </a>
+
+        <div class="topbar-actions">
+          <button id="logout-button" class="button button-secondary">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container app-shell">
+      <section id="home-screen">
+        <section class="stats-grid">
+          <article class="stat-card accent-orange">
+            <span>Sequência</span>
+            <strong id="streak-count">0 dias</strong>
+          </article>
+          <article class="stat-card accent-green">
+            <span>Capítulos lidos</span>
+            <strong id="progress-count">0</strong>
+          </article>
+          <article class="stat-card accent-blue">
+            <span>Conquistas</span>
+            <strong id="achievements-count">0</strong>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <div class="panel" id="reading-panel">
+            <div class="panel-header">
+              <h2>Leitura</h2>
+              <span class="tag" id="read-progress-tag">0/0 capítulos</span>
+            </div>
+            <div id="reading-book-list" class="book-list"></div>
+            <p class="reading-empty">
+              Abra a Bíblia para explorar os livros, capítulos e versículos.
+            </p>
+          </div>
+
+          <aside class="side-column">
+            <div class="panel small-panel" id="achievements-panel">
+              <div class="panel-header">
+                <h2>Conquistas</h2>
+              </div>
+              <div id="challenges-list" class="challenge-list"></div>
+
+              <div class="share-preview-wrap">
+                <div id="share-preview" class="share-preview" aria-live="polite"></div>
+                <a
+                  id="share-whatsapp-button"
+                  class="button button-primary full-width"
+                  href="#"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Compartilhar sequência no WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <div class="panel small-panel" id="recent-panel">
+              <div class="panel-header">
+                <h2>Leituras recentes</h2>
+              </div>
+              <div id="recent-progress" class="recent-list"></div>
+            </div>
+          </aside>
+        </section>
+      </section>
+
+      <section class="panel bible-screen hidden" id="bible-screen">
+        <div class="panel-header">
+          <h2>Bíblia</h2>
+        </div>
+        <div id="bible-book-list" class="book-list"></div>
+      </section>
+    </main>
+
+    <nav class="mobile-bottom-nav" aria-label="Navegação mobile">
+      <button type="button" class="bottom-nav-item active" data-target="reading">
+        <span class="nav-icon">🏠</span>
+        <span>Início</span>
+      </button>
+      <button type="button" class="bottom-nav-item" data-target="achievements">
+        <span class="nav-icon">🏆</span>
+        <span>Conquistas</span>
+      </button>
+      <button type="button" class="bottom-nav-item" data-target="recent">
+        <span class="nav-icon">🕘</span>
+        <span>Recentes</span>
+      </button>
+      <button type="button" class="bottom-nav-item" data-target="bible">
+        <span class="nav-icon">📖</span>
+        <span>Bíblia</span>
+      </button>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/database.js?v=20260914"></script>
+    <script src="./js/app.js?v=20260914"></script>
+  </body>
+</html>

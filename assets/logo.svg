@@ -1,0 +1,30 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="8" y1="8" x2="72" y2="72" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7AC7E8"/>
+      <stop offset="0.5" stop-color="#D29BEA"/>
+      <stop offset="1" stop-color="#86D7B0"/>
+    </linearGradient>
+    <linearGradient id="hand" x1="20" y1="18" x2="60" y2="62" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDFB"/>
+      <stop offset="1" stop-color="#F2E8FF"/>
+    </linearGradient>
+    <linearGradient id="heart" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#FFB7B7"/>
+      <stop offset="1" stop-color="#F67D9D"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="80" height="80" rx="20" fill="url(#bg)"/>
+
+  <path d="M25 53.5C25 57.1 27.9 59.9 31.5 59.9H32.8C35.6 59.9 38 57.5 38 54.7V45.8C38 43.7 39.6 42.1 41.7 42.1C43.8 42.1 45.4 43.7 45.4 45.8V49.5L46.9 48.1C49.1 46.1 52.7 45.8 55.1 47.4C57.4 49 58.4 52.2 57.3 54.9L55.9 58.5C55.1 60.8 53.1 62.4 50.7 62.4H31.5C27.9 62.4 25 59.6 25 56V53.5Z" fill="url(#hand)"/>
+
+  <path d="M26 45C28.8 43.3 32 42.3 36 42.3C39.8 42.3 43.5 43.6 46.5 46" stroke="#54A1BD" stroke-width="3.1" stroke-linecap="round"/>
+  <path d="M28 23.5C30.6 20.9 34 19.2 38 19.2C42 19.2 45.4 20.9 48 23.5" stroke="#6FCF9F" stroke-width="3.2" stroke-linecap="round"/>
+
+  <path d="M40 32.5C37 32.5 34.5 35 34.5 38C34.5 40.9 37 43.4 40 43.4C43 43.4 45.5 40.9 45.5 38C45.5 35 43 32.5 40 32.5Z" fill="url(#heart)"/>
+  <path d="M40 36C38.8 36 37.8 37 37.8 38.2C37.8 39.4 38.8 40.4 40 40.4C41.2 40.4 42.2 39.4 42.2 38.2C42.2 37 41.2 36 40 36Z" fill="#FFE4E8" fill-opacity="0.75"/>
+
+  <path d="M19 23.5C22.6 19.9 27.1 17.7 32 17.7C35.7 17.7 39.2 19 42 21.2C39 21.2 36.1 22.2 33.7 24.2C30.7 26.8 28.6 30.4 27.5 34.3C24 32.6 21 28.9 19 23.5Z" fill="#F7C6A6" fill-opacity="0.92"/>
+  <path d="M61 23.5C57.4 19.9 52.9 17.7 48 17.7C44.3 17.7 40.8 19 38 21.2C41 21.2 43.9 22.2 46.3 24.2C49.3 26.8 51.4 30.4 52.5 34.3C56 32.6 59 28.9 61 23.5Z" fill="#F9D5A9" fill-opacity="0.92"/>
+</svg>

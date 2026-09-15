@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Entrar | Bible Rats</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-card">
+        <div class="auth-header">
+          <a href="./index.html" class="brand brand-small">
+            <img src="./assets/logo.svg" alt="Bible Rats" />
+            <span>Bible Rats</span>
+          </a>
+          <h1>Entrar</h1>
+          <p>Use sua conta para continuar sua jornada.</p>
+        </div>
+
+        <form id="login-form" class="form">
+          <div class="field">
+            <label for="login-email">E-mail</label>
+            <input id="login-email" type="email" name="email" placeholder="seu@email.com" required />
+          </div>
+
+          <div class="field">
+            <label for="login-password">Senha</label>
+            <input id="login-password" type="password" name="password" placeholder="Sua senha" required />
+          </div>
+
+          <button type="submit" class="button button-primary full-width">Entrar</button>
+          <button type="button" id="demo-login-button" class="button button-secondary full-width">Entrar no modo demo</button>
+          <p id="login-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <div class="auth-footer">
+          <span>Não tem conta?</span>
+          <a href="./cadastro.html">Cadastre-se</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/auth.js"></script>
+  </body>
+</html>

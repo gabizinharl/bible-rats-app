@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastrar | Bible Rats</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-card">
+        <div class="auth-header">
+          <a href="./index.html" class="brand brand-small">
+            <img src="./assets/logo.svg" alt="Bible Rats" />
+            <span>Bible Rats</span>
+          </a>
+          <h1>Criar conta</h1>
+          <p>Comece sua jornada com disciplina e foco.</p>
+        </div>
+
+        <form id="signup-form" class="form">
+          <div class="field">
+            <label for="signup-name">Nome completo</label>
+            <input id="signup-name" type="text" name="full_name" placeholder="Seu nome" required />
+          </div>
+
+          <div class="field">
+            <label for="signup-username">Nome de usuário</label>
+            <input id="signup-username" type="text" name="username" placeholder="seuusuario" required />
+          </div>
+
+          <div class="field">
+            <label for="signup-email">E-mail</label>
+            <input id="signup-email" type="email" name="email" placeholder="seu@email.com" required />
+          </div>
+
+          <div class="field">
+            <label for="signup-password">Senha</label>
+            <input id="signup-password" type="password" name="password" placeholder="Crie uma senha" required />
+          </div>
+
+          <button type="submit" class="button button-primary full-width">Cadastrar</button>
+          <p class="form-message success" aria-live="polite">
+            Após o cadastro, você precisa confirmar o e-mail para poder entrar no app.
+          </p>
+          <p id="signup-message" class="form-message" aria-live="polite"></p>
+        </form>
+
+        <div class="auth-footer">
+          <span>Já tem conta?</span>
+          <a href="./login.html">Entrar</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="module" src="./js/auth.js"></script>
+  </body>
+</html>
