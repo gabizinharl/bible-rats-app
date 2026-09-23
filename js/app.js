@@ -62,13 +62,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const chapterVerseReads = progress.filter(
           (entry) => entry.book === book.name && entry.chapter === chapter && entry.verse != null
         );
-        const chapterReadCount = new Set(chapterVerseReads.map((entry) => entry.verse)).size;
+        const chapterReadCount = isChapterRead
+          ? MAX_VERSES_PER_CHAPTER
+          : new Set(chapterVerseReads.map((entry) => entry.verse)).size;
 
         const verseButtons = Array.from({ length: MAX_VERSES_PER_CHAPTER }, (_, index) => index + 1)
           .map((verse) => {
             const isRead = progress.some(
               (entry) => entry.book === book.name && entry.chapter === chapter && entry.verse === verse
-            );
+            ) || isChapterRead;
 
             return `
               <button
