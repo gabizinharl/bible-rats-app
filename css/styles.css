@@ -542,6 +542,13 @@ input {
   overflow: hidden;
 }
 
+.chapter-header {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  padding: 8px;
+}
+
 .chapter-button {
   width: 100%;
   display: flex;
@@ -551,10 +558,28 @@ input {
   border: none;
   background: rgba(255, 255, 255, 0.14);
   color: var(--text);
-  padding: 0.85rem 1rem;
+  padding: 0.85rem 0.75rem;
   cursor: pointer;
   font-weight: 700;
   text-align: left;
+}
+
+.chapter-complete-button {
+  flex: 0 0 auto;
+  border: 1px solid rgba(22, 163, 74, 0.28);
+  border-radius: 10px;
+  background: rgba(240, 253, 244, 0.8);
+  color: #166534;
+  padding: 0.5rem 0.7rem;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.chapter-complete-button.completed {
+  background: #22c55e;
+  border-color: transparent;
+  color: #fff;
 }
 
 .chapter-button.read {

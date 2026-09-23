@@ -1,6 +1,6 @@
 const STORAGE_KEYS = {
-  session: 'christian_gym_session',
-  progress: 'christian_gym_progress'
+  session: 'bible_rats_session',
+  progress: 'bible_rats_progress'
 };
 
 const BOOK_COLORS = [
@@ -116,16 +116,7 @@ function getSupabaseClient() {
 }
 
 function getSession() {
-  const session = getStoredItem(STORAGE_KEYS.session);
-
-  if (session?.user?.email === 'demo@christiangym.app') {
-    localStorage.removeItem(STORAGE_KEYS.session);
-    localStorage.removeItem(STORAGE_KEYS.progress);
-    localStorage.removeItem('christian_gym_demo');
-    return null;
-  }
-
-  return session;
+  return getStoredItem(STORAGE_KEYS.session);
 }
 
 function getProgress() {

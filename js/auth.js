@@ -42,7 +42,7 @@ const getSupabaseClient = () => {
 };
 
 const showLoginState = () => {
-  const session = JSON.parse(localStorage.getItem('christian_gym_session') || '{}');
+  const session = JSON.parse(localStorage.getItem('bible_rats_session') || '{}');
 
   if (session.user) {
     window.location.href = './app.html';
@@ -86,9 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         };
 
-        localStorage.removeItem('christian_gym_demo');
-        localStorage.removeItem('christian_gym_progress');
-        localStorage.setItem('christian_gym_session', JSON.stringify(session));
+        localStorage.removeItem('bible_rats_progress');
+        localStorage.setItem('bible_rats_session', JSON.stringify(session));
         formMessage('login-message', 'Login realizado com sucesso.', 'success');
         setTimeout(() => window.location.href = './app.html', 500);
       } catch (error) {
@@ -128,8 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         signupForm.reset();
-        localStorage.removeItem('christian_gym_demo');
-        localStorage.removeItem('christian_gym_progress');
+        localStorage.removeItem('bible_rats_progress');
         formMessage(
           'signup-message',
           'Cadastro realizado com sucesso. Verifique seu e-mail e confirme a conta antes de entrar no app.',

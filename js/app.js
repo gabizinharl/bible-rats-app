@@ -56,6 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const chapterMarkup = chapters.map((chapter) => {
         const isChapterExpanded = expandedChapters.has(`${book.name}:${chapter}`);
+        const isChapterRead = progress.some(
+          (entry) => entry.book === book.name && entry.chapter === chapter && entry.verse == null
+        );
         const chapterVerseReads = progress.filter(
           (entry) => entry.book === book.name && entry.chapter === chapter && entry.verse != null
         );
@@ -82,15 +85,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return `
           <div class="chapter-item">
-            <button
-              class="chapter-button ${isChapterExpanded ? 'open' : ''} ${chapterReadCount > 0 ? 'read' : ''}"
-              type="button"
-              data-book="${book.name}"
-              data-chapter="${chapter}"
-            >
-              <span>Capítulo ${chapter}</span>
-              <span class="chapter-badge">${chapterReadCount}/${MAX_VERSES_PER_CHAPTER}</span>
-            </button>
+            <div class="chapter-header">
+              <button
+                class="chapter-button ${isChapterExpanded ? 'open' : ''} ${isChapterRead || chapterReadCount > 0 ? 'read' : ''}"
+                type="button"
+                data-book="${book.name}"
+                data-chapter="${chapter}"
+              >
+                <span>Capítulo ${chapter}</span>
+                <span class="chapter-badge">${chapterReadCount}/${MAX_VERSES_PER_CHAPTER}</span>
+              </button>
+              <button
+                class="chapter-complete-button ${isChapterRead ? 'completed' : ''}"
+                type="button"
+                data-book="${book.name}"
+                data-chapter="${chapter}"
+                aria-label="${isChapterRead ? 'Desmarcar' : 'Marcar'} capítulo ${chapter} como lido"
+                title="${isChapterRead ? 'Desmarcar capítulo como lido' : 'Marcar capítulo como lido'}"
+              >
+                ${isChapterRead ? 'Lido' : 'Marcar como lido'}
+              </button>
+            </div>
 
             <div class="chapter-detail ${isChapterExpanded ? 'visible' : ''}">
               <div class="verse-grid">${verseButtons}</div>
@@ -314,6 +329,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         renderBookListForCurrentLayout(window.database.getBooks(), window.database.getProgress());
+        return;
+      }
+
+      const chapterCompleteButton = event.target.closest('.chapter-complete-button');
+      if (chapterCompleteButton) {
+        const { book, chapter } = chapterCompleteButton.dataset;
+        window.database.updateProgress(book, Number(chapter));
+
+        updateDashboard(window.database.buildAppData());
         return;
       }
 
