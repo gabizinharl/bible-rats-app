@@ -6,6 +6,7 @@ const STORAGE_KEYS = {
 const BOOK_COLORS = [
   '#f87171', '#fb7185', '#f97316', '#facc15', '#84cc16', '#22c55e', '#2dd4bf', '#38bdf8', '#60a5fa', '#a78bfa', '#c084fc', '#f472b6'
 ];
+const MAX_TRACKED_VERSES_PER_CHAPTER = 25;
 
 const defaultBookData = [
   { name: 'Gênesis', chapters: 50, testament: 'AT' },
@@ -136,8 +137,21 @@ function updateProgress(book, chapter, verse = null) {
     );
 
     const merged = chapterEntry
-      ? currentProgress.filter((entry) => !(entry.book === book && entry.chapter === chapter && entry.verse == null))
+      ? currentProgress.filter(
+          (entry) =>
+            !(entry.book === book &&
+              entry.chapter === chapter &&
+              (entry.verse == null || entry.source === 'chapter'))
+        )
       : [
+          ...Array.from({ length: MAX_TRACKED_VERSES_PER_CHAPTER }, (_, index) => ({
+            id: `manual-${Date.now()}-${index + 1}`,
+            book,
+            chapter,
+            verse: index + 1,
+            source: 'chapter',
+            completed_at: new Date().toISOString()
+          })),
           {
             id: `manual-${Date.now()}`,
             book,
@@ -189,7 +203,20 @@ function buildAppData() {
   );
 
   const totalChaptersRead = uniqueChapterKeys.size;
-  const totalVerseReads = progress.filter((entry) => entry.verse != null).length;
+  const uniqueVerseKeys = new Set();
+
+  progress.forEach((entry) => {
+    if (entry.verse != null) {
+      uniqueVerseKeys.add(`${entry.book}:${entry.chapter}:${entry.verse}`);
+      return;
+    }
+
+    for (let verse = 1; verse <= MAX_TRACKED_VERSES_PER_CHAPTER; verse += 1) {
+      uniqueVerseKeys.add(`${entry.book}:${entry.chapter}:${verse}`);
+    }
+  });
+
+  const totalVerseReads = uniqueVerseKeys.size;
   const streak = 0;
   const achievements = [];
 
