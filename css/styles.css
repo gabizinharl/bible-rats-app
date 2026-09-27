@@ -8,7 +8,7 @@
   --primary-dark: #5aa9ba;
   --secondary: #dca7d7;
   --secondary-strong: #c67ec8;
-  --success: #9bd4ae;
+  --success: #166534;
   --warning: #f1c48d;
   --danger: #e99aa4;
   --border: #e7d9ef;
@@ -26,7 +26,7 @@ html {
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #fef1e0 0%, #f5e9ff 45%, #e5f7ef 100%);
+  background: #f5efe5;
   color: var(--text);
 }
 
@@ -83,7 +83,7 @@ input {
   height: 46px;
   border-radius: 14px;
   box-shadow: 0 8px 20px rgba(125, 198, 211, 0.25);
-  background: linear-gradient(135deg, #d7f2f4 0%, #f3dcf3 100%);
+  background: #dceff0;
 }
 
 .brand-small {
@@ -125,7 +125,7 @@ input {
 }
 
 .button-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary-strong) 100%);
+  background: var(--primary-dark);
   color: white;
   box-shadow: 0 16px 28px rgba(133, 150, 214, 0.22);
 }
@@ -277,6 +277,44 @@ input {
   color: var(--muted);
 }
 
+.confirmation-card {
+  text-align: center;
+}
+
+.confirmation-card .eyebrow {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  color: var(--primary-dark);
+}
+
+.confirmation-card h1 {
+  margin: 0;
+}
+
+.confirmation-icon {
+  width: 64px;
+  height: 64px;
+  margin: 12px auto 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #dcfce7;
+  color: #166534;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.confirmation-icon-error {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.confirmation-copy {
+  margin: 12px auto 24px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
 .form {
   display: grid;
   gap: 18px;
@@ -317,6 +355,7 @@ input {
 
 .form-message.success {
   color: var(--success);
+  font-weight: 700;
 }
 
 .auth-footer {
@@ -377,15 +416,15 @@ input {
 }
 
 .accent-orange {
-  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  background: #ffedd5;
 }
 
 .accent-green {
-  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  background: #d1fae5;
 }
 
 .accent-blue {
-  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  background: #dbeafe;
 }
 
 .content-grid {
@@ -443,7 +482,7 @@ input {
 .book-card {
   border: 1px solid rgba(255, 255, 255, 0.8);
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--book-color) 0%, rgba(255, 255, 255, 0.92) 100%);
+  background: var(--book-color);
   overflow: hidden;
   box-shadow: 0 14px 28px rgba(15, 23, 42, 0.08);
 }
@@ -583,12 +622,12 @@ input {
 }
 
 .chapter-button.read {
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(34, 197, 94, 0.1));
+  background: #dcfce7;
   color: var(--text);
 }
 
 .chapter-button.open {
-  background: linear-gradient(135deg, rgba(96, 165, 250, 0.2), rgba(167, 139, 250, 0.18));
+  background: #dbeafe;
 }
 
 .chapter-badge {
@@ -626,7 +665,7 @@ input {
 }
 
 .verse-chip.read {
-  background: linear-gradient(135deg, #22c55e, #4ade80);
+  background: #16a34a;
   border-color: transparent;
   color: #fff;
 }
@@ -652,7 +691,7 @@ input {
 
 .challenge-item.unlocked {
   border-color: rgba(22, 163, 74, 0.3);
-  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  background: #ecfdf5;
 }
 
 .challenge-item.locked {
@@ -708,7 +747,7 @@ input {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--primary-dark);
 }
 
 .recent-item {
@@ -734,7 +773,7 @@ input {
 }
 
 .share-card {
-  background: linear-gradient(135deg, #0f172a 0%, #1d4ed8 100%);
+  background: #1d4ed8;
   border-radius: 22px;
   padding: 20px;
   color: white;

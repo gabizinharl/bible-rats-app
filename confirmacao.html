@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-mail confirmado | Bible Rats</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body class="auth-page confirmation-page">
+    <main class="auth-shell">
+      <section class="auth-card confirmation-card" aria-live="polite">
+        <a href="./index.html" class="brand brand-small">
+          <img src="./assets/logo.svg" alt="Bible Rats" />
+          <span>Bible Rats</span>
+        </a>
+
+        <div id="confirmation-success">
+          <div class="confirmation-icon" aria-hidden="true">✓</div>
+          <p class="eyebrow">Tudo certo</p>
+          <h1>E-mail confirmado</h1>
+          <p class="confirmation-copy">
+            Sua conta Bible Rats está pronta. Volte para a página de login para começar sua jornada.
+          </p>
+          <a class="button button-primary full-width" href="./login.html">Ir para o login</a>
+        </div>
+
+        <div id="confirmation-error" class="hidden">
+          <div class="confirmation-icon confirmation-icon-error" aria-hidden="true">!</div>
+          <p class="eyebrow">Link indisponível</p>
+          <h1>Não foi possível confirmar</h1>
+          <p id="confirmation-error-message" class="confirmation-copy">
+            O link pode ter expirado ou já ter sido utilizado.
+          </p>
+          <a class="button button-secondary full-width" href="./login.html">Voltar para o login</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="./js/config.js"></script>
+    <script type="module">
+      const config = window.BIBLE_RATS_SUPABASE || {};
+      const supabase = window.supabase.createClient(config.url, config.key);
+      const params = new URLSearchParams(window.location.hash.substring(1));
+      const errorDescription = params.get('error_description');
+
+      if (errorDescription) {
+        document.getElementById('confirmation-success').classList.add('hidden');
+        document.getElementById('confirmation-error').classList.remove('hidden');
+        document.getElementById('confirmation-error-message').textContent = decodeURIComponent(errorDescription.replace(/\+/g, ' '));
+      } else {
+        await supabase.auth.getSession();
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    </script>
+  </body>
+</html>

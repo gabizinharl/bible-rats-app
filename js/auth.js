@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
         email: document.getElementById('signup-email').value.trim(),
         password: document.getElementById('signup-password').value.trim(),
         options: {
+          emailRedirectTo: new URL('./confirmacao.html', window.location.href).href,
           data: {
             full_name: document.getElementById('signup-name').value.trim(),
             username: document.getElementById('signup-username').value.trim()
